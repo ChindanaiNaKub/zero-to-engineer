@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From zero to engineer, a field guide to software engineering</title>
+<meta name="description" content="Eleven levels from first principles to engineering judgment, taught with retrieval practice, spaced review and mastery gates.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · v2.0.0 · genre editorial · theme Editorial (dealt 2/3) · shape Long Document · job: study · posture restrained */
+/* Hallmark · pre-emit critique: P5 H5 E4 S4 R5 V4 · weakest: S, the live L0-L10 ladder is this curriculum’s own navigation */
+/* Hallmark · chrome: a rail folio and a level ladder · nav: the ladder · footer: a mast · motion: state only, no reveal */
+
+:root {
+  --color-paper: oklch(97% 0.007 86);
+  --color-paper-2: oklch(94% 0.010 86);
+  --color-paper-3: oklch(91% 0.012 84);
+  --color-ink: oklch(16% 0.012 280);
+  --color-ink-2: oklch(29% 0.011 280);
+  --color-muted: oklch(48% 0.010 75);
+  --color-rule: oklch(85% 0.009 85);
+  --color-rule-2: oklch(64% 0.010 80);
+  --color-accent: oklch(49% 0.130 152);
+  --color-accent-soft: oklch(91% 0.035 152);
+  --color-accent-ink: oklch(98% 0.005 88);
+  --color-focus: oklch(52% 0.135 152);
+  --color-on-ink: oklch(97% 0.007 86);
+  --color-on-ink-muted: oklch(80% 0.010 86);
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --display-weight: 800;
+  --tracking-display: -0.012em;
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-body: 1.125rem;
+  --text-lead: 1.5rem;
+  --text-title: 2rem;
+  --text-section: 3rem;
+  --text-display-s: 3.25rem;
+  --text-display: clamp(4.25rem, 8.5vw, 7.5rem);
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+  --rule-hair: 1px;
+  --rule-heavy: 4px;
+  --radius-card: 0;
+  --radius-pill: 0;
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --z-rail: 200;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: var(--space-lg); caret-color: var(--color-accent); scrollbar-color: var(--color-rule-2) var(--color-paper); }
+body { overflow-x: clip; margin: 0; background: var(--color-paper); color: var(--color-ink-2); font-family: var(--font-body); font-size: var(--text-body); line-height: 1.55; font-optical-sizing: auto; font-synthesis: none; font-variant-numeric: oldstyle-nums; }
+::selection { background: var(--color-accent-soft); color: var(--color-ink); }
+
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight); font-variation-settings: "wdth" 75, "opsz" 96; line-height: 1.0; letter-spacing: var(--tracking-display); color: var(--color-ink); text-wrap: balance; overflow-wrap: break-word; min-width: 0; font-variant-numeric: lining-nums tabular-nums; }
+h4 { font-weight: 500; font-variation-settings: "wdth" 75, "opsz" 12; font-size: var(--text-sm); }
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--color-rule-2); text-decoration-thickness: var(--rule-hair); text-underline-offset: 0.2em; }
+a:hover { text-decoration-color: var(--color-accent); }
+code { font-family: var(--font-code); font-size: 0.9em; color: var(--color-ink); }
+:where(a, button, summary, input, [tabindex]):focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+:where(input):focus-visible { outline-offset: -2px; }
+button, input { font: inherit; }
+
+.skip { position: absolute; left: -9999px; top: var(--space-xs); padding: var(--space-sm) var(--space-md); background: var(--color-ink); color: var(--color-on-ink); z-index: var(--z-rail); }
+.skip:focus { left: var(--space-md); }
+
+.page { display: grid; grid-template-columns: 240px minmax(0, 1fr); max-width: 1480px; margin: 0 auto; }
+
+.rail { position: sticky; top: 0; align-self: start; height: 100dvh; overflow-y: auto; display: flex; flex-direction: column; gap: var(--space-lg); padding: var(--space-xl) var(--space-lg); border-right: var(--rule-hair) solid var(--color-rule); }
+.wordmark { font-family: var(--font-display); font-weight: var(--display-weight); font-variation-settings: "wdth" 75, "opsz" 96; font-size: var(--text-lead); line-height: 1.0; letter-spacing: var(--tracking-display); color: var(--color-ink); }
+.rail-note { font-size: var(--text-sm); color: var(--color-muted); max-width: 24ch; }
+.rail-ladder { display: grid; }
+.rail-ladder a { display: grid; grid-template-columns: 2.5rem 20px minmax(0, 1fr); gap: var(--space-xs); align-items: center; padding: var(--space-xs) 0; border-top: var(--rule-hair) solid var(--color-rule); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-ink-2); text-decoration: none; }
+.rail-ladder a:hover { color: var(--color-ink); }
+.rail-ladder a span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mark { display: block; width: 20px; height: var(--space-2xs); background: var(--color-rule-2); }
+.rail-ladder a[data-state="passed"] .mark { background: var(--color-ink); }
+.rail-ladder a[data-state="current"] .mark { background: var(--color-accent); }
+.rail-foot { margin-top: auto; display: grid; gap: var(--space-sm); border-top: var(--rule-heavy) solid var(--color-ink); padding-top: var(--space-md); font-size: var(--text-sm); }
+.rail-foot strong { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-lead); color: var(--color-ink); }
+
+main { min-width: 0; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr); gap: var(--space-2xl); align-items: end; padding: var(--space-3xl) var(--space-2xl) var(--space-2xl); border-bottom: var(--rule-heavy) solid var(--color-ink); }
+.hero-copy { display: grid; gap: var(--space-lg); justify-items: start; }
+.hero h1 { font-size: var(--text-display); line-height: 0.92; max-width: 18ch; }
+.standfirst { font-size: var(--text-lead); line-height: 1.25; color: var(--color-ink); max-width: 34ch; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-lg); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); border: var(--rule-hair) solid var(--color-ink); border-radius: var(--radius-card); text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out); }
+.btn--primary { background: var(--color-ink); color: var(--color-on-ink); }
+.btn--primary:hover { background: var(--color-ink-2); color: var(--color-on-ink); }
+.btn--secondary { background: none; color: var(--color-ink); }
+.btn--secondary:hover { background: var(--color-paper-2); }
+.hero-figure { display: grid; gap: var(--space-sm); padding: var(--space-lg); background: var(--color-ink); color: var(--color-on-ink); }
+.figure-num { font-family: var(--font-display); font-weight: var(--display-weight); font-variation-settings: "wdth" 75, "opsz" 96; font-size: var(--text-display-s); line-height: 0.9; color: var(--color-on-ink); font-variant-numeric: lining-nums tabular-nums; }
+.figure-den { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-on-ink-muted); }
+.figure-bar { height: var(--space-2xs); background: var(--color-on-ink-muted); }
+.figure-bar > span { display: block; height: 100%; width: 100%; background: var(--color-accent); transform: scaleX(0); transform-origin: left center; transition: transform var(--dur-long) var(--ease-out); }
+.figure-note { font-size: var(--text-sm); color: var(--color-on-ink-muted); line-height: 1.5; }
+
+.review { padding: var(--space-xl) var(--space-2xl); background: var(--color-paper-2); border-top: var(--rule-hair) solid var(--color-rule-2); }
+.review > h2 { font-size: var(--text-section); margin-bottom: var(--space-md); }
+.review-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-sm); }
+.review-head p { font-size: var(--text-sm); color: var(--color-muted); }
+.empty { color: var(--color-muted); max-width: 70ch; }
+.review-card { border-top: var(--rule-hair) solid var(--color-rule); padding: var(--space-md) 0; display: grid; gap: var(--space-sm); }
+.card-meta { display: flex; justify-content: space-between; font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); }
+.card-q { max-width: 70ch; color: var(--color-ink); }
+
+.opens { margin-top: var(--space-3xl); border-top: var(--rule-heavy) solid var(--color-ink); padding: var(--space-lg) var(--space-2xl) var(--space-2xl); }
+.opens > h2 { font-size: var(--text-section); max-width: 24ch; }
+.section-lead { font-size: var(--text-lead); line-height: 1.3; color: var(--color-ink); max-width: 46ch; margin-top: var(--space-lg); }
+.honest { color: var(--color-muted); max-width: 68ch; margin-top: var(--space-xl); padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); }
+
+.mechanisms { list-style: none; margin: var(--space-2xl) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xl) var(--space-2xl); }
+.mechanisms > li { border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-md); display: grid; gap: var(--space-xs); }
+.m-num { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-lead); color: var(--color-ink); font-variant-numeric: lining-nums tabular-nums; }
+.mechanisms h3 { font-size: var(--text-title); }
+.mechanisms p { max-width: 46ch; }
+.cite { font-size: var(--text-sm); color: var(--color-muted); }
+
+.ladder-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-2xl); margin-top: var(--space-lg); }
+.ladder-intro p { max-width: 62ch; }
+.act-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md); border-top: var(--rule-heavy) solid var(--color-ink); padding-top: var(--space-sm); margin-top: var(--space-3xl); font-family: var(--font-display); font-weight: var(--display-weight); font-variation-settings: "wdth" 75, "opsz" 96; font-size: var(--text-lead); color: var(--color-ink); }
+.act-line span { font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); }
+.levels { margin-top: var(--space-lg); }
+.level { border-bottom: var(--rule-hair) solid var(--color-rule); scroll-margin-top: var(--space-lg); }
+.level > summary { display: block; list-style: none; cursor: pointer; }
+.level > summary::-webkit-details-marker { display: none; }
+.level-head { display: grid; grid-template-columns: var(--space-2xl) minmax(0, 1fr) auto; gap: var(--space-md); align-items: baseline; padding: var(--space-lg) 0; font-size: var(--text-title); }
+.level-num { font-size: var(--text-lead); }
+.level-meta { display: flex; align-items: baseline; gap: var(--space-md); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); }
+.status { color: var(--color-ink); white-space: nowrap; }
+.toggle { align-self: center; margin-left: var(--space-xs); }
+.toggle::before { content: "+"; font-family: var(--font-display); font-weight: 500; font-size: var(--text-lead); color: var(--color-muted); }
+.level[open] .toggle::before { content: "-"; }
+.level-body { display: grid; gap: var(--space-xl); padding: 0 0 var(--space-2xl) var(--space-2xl); }
+.thesis { font-size: var(--text-lead); line-height: 1.3; color: var(--color-ink); max-width: 62ch; border-left: var(--rule-heavy) solid var(--color-ink); padding-left: var(--space-lg); }
+.level-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xl); }
+.level-cols h4 { margin-bottom: var(--space-md); }
+.concepts { display: grid; gap: var(--space-md); margin: 0; }
+.concepts > div { display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-sm); }
+.concepts dt { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-ink); }
+.concepts dd { margin: 0; max-width: 48ch; font-size: var(--text-sm); line-height: 1.55; }
+.ladder-steps, .level-sources { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-md); }
+.ladder-steps > li, .level-sources > li { border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-sm); font-size: var(--text-sm); max-width: 54ch; }
+.step { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; color: var(--color-ink); }
+.capstone { margin-top: var(--space-lg); border-top: var(--rule-heavy) solid var(--color-ink); padding-top: var(--space-sm); max-width: 54ch; }
+.capstone-label { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); display: block; margin-bottom: var(--space-xs); }
+.level-sources a { display: block; color: var(--color-ink); }
+.src-note { color: var(--color-muted); }
+
+.gate { background: var(--color-paper-2); border-top: var(--rule-hair) solid var(--color-rule-2); padding: var(--space-lg); display: grid; gap: var(--space-md); }
+.gate h4 { font-size: var(--text-lead); font-weight: var(--display-weight); font-variation-settings: "wdth" 75, "opsz" 96; }
+.gate .hint { font-size: var(--text-sm); color: var(--color-muted); max-width: 66ch; }
+.predict-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
+.predict { display: flex; align-items: center; gap: var(--space-sm); font-size: var(--text-sm); color: var(--color-muted); }
+.predict input { width: 5.5rem; min-height: 44px; padding: 0 var(--space-sm); border: var(--rule-hair) solid var(--color-rule-2); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink); font-variant-numeric: lining-nums tabular-nums; }
+.predict input[aria-invalid="true"] { border-color: var(--color-accent); }
+.prompts { list-style: none; margin: 0; padding: 0; display: grid; }
+.prompts > li { border-top: var(--rule-hair) solid var(--color-rule); padding: var(--space-md) 0; display: grid; gap: var(--space-sm); }
+.q { max-width: 66ch; color: var(--color-ink); }
+.answer > summary { display: inline-block; list-style: none; cursor: pointer; font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); text-decoration: underline; text-decoration-color: var(--color-rule-2); text-underline-offset: 0.2em; }
+.answer > summary::-webkit-details-marker { display: none; }
+.answer p { margin: var(--space-sm) 0 0; max-width: 66ch; font-size: var(--text-sm); }
+.grade { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.chip { min-height: 36px; padding: 0 var(--space-md); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); border: var(--rule-hair) solid var(--color-rule-2); border-radius: var(--radius-card); background: none; color: var(--color-ink-2); cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out); }
+.chip:hover { background: var(--color-paper-3); }
+.chip[aria-pressed="true"] { background: var(--color-ink); color: var(--color-on-ink); border-color: var(--color-ink); }
+.gate-result { font-size: var(--text-sm); color: var(--color-ink); min-height: 1lh; }
+.linkbtn { min-height: 36px; padding: 0; border: 0; background: none; font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-rule-2); text-underline-offset: 0.2em; cursor: pointer; }
+.linkbtn:hover { text-decoration-color: var(--color-accent); }
+:where(.btn, .chip, .linkbtn):active { opacity: 0.82; }
+:where(.btn, .chip, .linkbtn):disabled { opacity: 0.55; cursor: not-allowed; }
+
+.source-groups { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-2xl) var(--space-xl); margin-top: var(--space-2xl); }
+.source-groups h3 { font-size: var(--text-title); margin-bottom: var(--space-lg); }
+.refs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-md); }
+.refs > li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: var(--space-sm); border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-sm); scroll-margin-top: var(--space-lg); }
+.ref-n { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: lining-nums tabular-nums; }
+.ref-cite { font-size: var(--text-sm); line-height: 1.5; max-width: 60ch; }
+.ref-link { font-size: var(--text-sm); }
+.course-list { list-style: none; margin: var(--space-lg) 0 0; padding: 0; display: grid; gap: var(--space-sm); }
+.course-list > li { border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-sm); font-size: var(--text-sm); }
+
+footer { margin-top: var(--space-3xl); border-top: var(--rule-heavy) solid var(--color-ink); padding: var(--space-xl) var(--space-2xl) var(--space-3xl); display: grid; gap: var(--space-sm); font-size: var(--text-sm); color: var(--color-muted); }
+footer .mast { font-family: var(--font-display); font-weight: var(--display-weight); font-variation-settings: "wdth" 75, "opsz" 96; font-size: var(--text-title); color: var(--color-ink); }
+
+@media (max-width: 60rem) {
+  .page { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: static; height: auto; overflow-y: visible; border-right: 0; border-bottom: var(--rule-hair) solid var(--color-rule); padding: var(--space-md) var(--space-lg); gap: var(--space-md); }
+  .rail-note { display: none; }
+  .rail-ladder { grid-template-columns: repeat(11, minmax(0, 1fr)); gap: var(--space-xs); }
+  .rail-ladder a { grid-template-columns: minmax(0, 1fr); border-top: 0; justify-items: center; }
+  .rail-ladder a span:last-child { display: none; }
+  .rail-ladder a .mark { width: 100%; }
+  .rail-foot { margin-top: 0; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .hero, .mechanisms, .ladder-intro, .level-cols, .source-groups { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding: var(--space-2xl) var(--space-lg); gap: var(--space-xl); }
+  .review, .opens, footer { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+  .hero-figure { max-width: 32rem; }
+  .level-body { padding-left: 0; }
+  .level-head { grid-template-columns: 48px minmax(0, 1fr); }
+  .level-meta { grid-column: 2; }
+  .act-line { margin-top: var(--space-2xl); }
+}
+@media (max-width: 30rem) {
+  .hero h1 { font-size: clamp(3rem, 14vw, 4.25rem); }
+  .concepts > div { grid-template-columns: minmax(0, 1fr); }
+  .rail-ladder { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page">
+  <aside class="rail" aria-label="Progress and level navigation">
+    <div>
+      <p class="wordmark">From zero to engineer</p>
+      <p class="rail-note">A field guide in eleven levels. Progress stays on this device.</p>
+    </div>
+    <nav class="rail-ladder" aria-label="Levels">
+      <a href="#L0" data-target="L0"><span>L0</span><span class="mark" aria-hidden="true"></span><span>The machine</span></a>
+      <a href="#L1" data-target="L1"><span>L1</span><span class="mark" aria-hidden="true"></span><span>Primitives</span></a>
+      <a href="#L2" data-target="L2"><span>L2</span><span class="mark" aria-hidden="true"></span><span>Data and cost</span></a>
+      <a href="#L3" data-target="L3"><span>L3</span><span class="mark" aria-hidden="true"></span><span>Abstraction</span></a>
+      <a href="#L4" data-target="L4"><span>L4</span><span class="mark" aria-hidden="true"></span><span>Correctness</span></a>
+      <a href="#L5" data-target="L5"><span>L5</span><span class="mark" aria-hidden="true"></span><span>Systems</span></a>
+      <a href="#L6" data-target="L6"><span>L6</span><span class="mark" aria-hidden="true"></span><span>Persistent state</span></a>
+      <a href="#L7" data-target="L7"><span>L7</span><span class="mark" aria-hidden="true"></span><span>Architecture</span></a>
+      <a href="#L8" data-target="L8"><span>L8</span><span class="mark" aria-hidden="true"></span><span>Collaboration</span></a>
+      <a href="#L9" data-target="L9"><span>L9</span><span class="mark" aria-hidden="true"></span><span>Operations</span></a>
+      <a href="#L10" data-target="L10"><span>L10</span><span class="mark" aria-hidden="true"></span><span>Judgment</span></a>
+    </nav>
+    <div class="rail-foot">
+      <p>Due for review <strong id="due-count" role="status">0</strong></p>
+      <button class="linkbtn" type="button" data-act="reset">Clear progress</button>
+    </div>
+  </aside>
+
+  <main id="main">
+    <header class="hero">
+      <div class="hero-copy">
+        <h1>From zero to engineer.</h1>
+        <p class="standfirst">Eleven levels, one map, and a study loop that makes each one stick.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#L0" data-start>Start at L0</a>
+          <a class="btn btn--secondary" href="#method">Read the method</a>
+        </div>
+      </div>
+      <div class="hero-figure">
+        <span class="figure-num" id="progress-num">0</span>
+        <span class="figure-den">of 11 levels passed</span>
+        <div class="figure-bar" aria-hidden="true"><span id="progress-fill"></span></div>
+        <p class="figure-note">Progress is stored in this browser. Nothing is sent anywhere.</p>
+      </div>
+    </header>
+
+    <section class="review" aria-labelledby="review-h">
+      <div class="review-head">
+        <h2 id="review-h">What is due today</h2>
+        <p>Answer from memory, then grade yourself.</p>
+      </div>
+      <div id="review-list">
+        <p class="empty">Progress and review need JavaScript. All eleven levels below still read fine without it.</p>
+      </div>
+    </section>
+
+    <section class="opens" id="method" aria-labelledby="method-h">
+      <h2 id="method-h">Read less. Recall more.</h2>
+      <p class="section-lead">Six mechanisms with evidence behind them. Each one is wired into a control on this page, not printed as advice.</p>
+      <ol class="mechanisms">
+        <li>
+          <span class="m-num">01</span>
+          <h3>Answer before you look</h3>
+          <p>Every gate asks you to recall before its answer is available. Rereading raises confidence without raising retention.</p>
+          <p class="cite">Roediger and Karpicke (2006), Dunlosky et al. (2013). <a href="#r1">Sources 1 and 2</a>.</p>
+        </li>
+        <li>
+          <span class="m-num">02</span>
+          <h3>Come back on a schedule</h3>
+          <p>Passed questions return in 1, 3, 7, 14, 30, 60 and 120 days, mixed across levels rather than blocked by topic.</p>
+          <p class="cite">Cepeda et al. (2006), Cepeda et al. (2008). <a href="#r3">Sources 3 and 4</a>.</p>
+        </li>
+        <li>
+          <span class="m-num">03</span>
+          <h3>Advance on a criterion</h3>
+          <p>A level passes at 80 percent on its gate. Time spent is not the measure; the criterion is fixed and visible.</p>
+          <p class="cite">Bloom (1968), Bloom (1984). <a href="#r5">Sources 5 and 6</a>.</p>
+        </li>
+        <li>
+          <span class="m-num">04</span>
+          <h3>Study one, finish one, do one cold</h3>
+          <p>Each level has three rungs. One language and one stack all the way through keep extraneous load down.</p>
+          <p class="cite">Sweller (1988), Sweller et al. (1998), Atkinson et al. (2000). <a href="#r7">Sources 7 to 9</a>.</p>
+        </li>
+        <li>
+          <span class="m-num">05</span>
+          <h3>Work just past your edge</h3>
+          <p>The capstone is one task you cannot quite do yet, with a check you can run yourself. Feedback arrives from the artifact.</p>
+          <p class="cite">Ericsson, Krampe and Tesch-Romer (1993). <a href="#r10">Source 10</a>.</p>
+        </li>
+        <li>
+          <span class="m-num">06</span>
+          <h3>Predict, then compare</h3>
+          <p>Guess your gate score before you begin. The gap between guess and result is the one number that corrects overconfidence.</p>
+          <p class="cite">Chi et al. (1994), Bjork (1994), Dunlosky et al. (2013). <a href="#r11">Sources 11, 12 and 2</a>.</p>
+        </li>
+      </ol>
+      <p class="honest">Two mechanisms here have promising but thinner evidence: interleaved review and self-explanation. Dunlosky et al. rate them moderate rather than high utility. They cost little, so they stay. What is deliberately absent: video lectures, streaks, badges, a leaderboard, an account and a backend. None of them improve retention, and each adds code. This is a map and a scheduler, not a course. Gates are self-graded, so a pass means you were honest, not that a machine checked you. The hour budgets below are planning estimates, not measurements. L10 has no finish line.</p>
+    </section>
+
+    <section class="opens" id="ladder" aria-labelledby="ladder-h">
+      <h2 id="ladder-h">Eleven levels, one ladder</h2>
+      <div class="ladder-intro">
+        <p class="section-lead">The order follows dependency, not popularity. Each level exists because the next one cannot be understood without it.</p>
+        <div>
+          <p>Read a level, work its three rungs, build the capstone, then take the gate. If you already know a level, take the gate anyway. A miss is information, not a failure.</p>
+          <p class="honest">Rough budget across all eleven levels: 900 to 1,200 focused hours, plus real projects. Mastery is a practice, not a certificate.</p>
+        </div>
+      </div>
+
+      <p class="act-line">Ground <span>L0 to L2</span></p>
+      <div class="levels">
+
+        <details class="level" id="L0">
+          <summary><h3 class="level-head"><span class="level-num">L0</span><span class="level-name">The machine and the learner</span><span class="level-meta"><span class="hours">15-25 h</span><span class="status" data-status="L0">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">A computer transforms symbols by following explicit instructions. Every layer above it is an abstraction built to hide that fact, never to change it.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Bits and addresses</dt><dd>All data is numbers. Memory is a numbered array of bytes; a file is a named sequence of them.</dd></div>
+                  <div><dt>The fetch loop</dt><dd>A processor fetches, decodes and executes one instruction after another. A program is data that another program reads as instructions.</dd></div>
+                  <div><dt>Layers of verbs</dt><dd>Hardware, kernel, process, runtime, interpreter. Each layer offers fewer, safer verbs than the one below.</dd></div>
+                  <div><dt>The shell</dt><dd>A shell starts other programs. Paths, arguments, standard input and standard output are its whole vocabulary.</dd></div>
+                  <div><dt>Encoding</dt><dd>Characters are numbers agreed by a table. Bytes mean nothing until a reader interprets them.</dd></div>
+                  <div><dt>How learning works</dt><dd>Recall before review, space the reviews, predict your score. Familiarity from rereading is a poor signal.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Trace <code>python hello.py</code> on paper: disk, process, interpreter, system call, pixels. Write each step in your own words.</li>
+                  <li><span class="step">Finish one.</span> A half-filled trace of <code>cat notes.txt &gt; out.txt</code> is given. Fill in where bytes come from and where they go.</li>
+                  <li><span class="step">Do one cold.</span> Without notes, explain why a text file can hold a picture and why a program can be data.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>A working toolchain: editor, shell, interpreter, Git. A one-page account of how a program runs, written from memory, plus a dated learning log.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row">
+                <label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label>
+              </div>
+              <ol class="prompts">
+                <li><p class="q">What does a processor do, in one sentence?</p><details class="answer"><summary>Reveal the answer</summary><p>It repeatedly fetches an instruction, decodes it, executes it and advances. Everything above is a layer over that loop.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why is a file only bytes until something reads it?</p><details class="answer"><summary>Reveal the answer</summary><p>Bytes carry no type or meaning. An encoding and a program agree on how to interpret them.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Name the layers between a keypress and your code running.</p><details class="answer"><summary>Reveal the answer</summary><p>Hardware, kernel, shell or process, runtime or interpreter, your code. Any correct chain that keeps the idea of layers counts.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why does rereading feel effective but fail?</p><details class="answer"><summary>Reveal the answer</summary><p>It raises familiarity and confidence without exercising retrieval. Only attempts to recall strengthen later recall.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L0"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://www.charlespetzold.com/code/">Code: The Hidden Language of Computer Hardware and Software, Charles Petzold</a><span class="src-note"> Build a computer from switches upward.</span></li>
+                <li><a href="https://missing.csail.mit.edu/">MIT The Missing Semester of Your CS Education</a><span class="src-note"> Shell, Git and tooling in eleven free lectures.</span></li>
+                <li><a href="https://cs50.harvard.edu/x/">Harvard CS50x, week 0</a><span class="src-note"> A gentle first week on bits and algorithms. Free.</span></li>
+                <li><a href="https://code.energy/">Computer Science Distilled, Wladston Ferreira Filho</a><span class="src-note"> A short map of the whole field first.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L1">
+          <summary><h3 class="level-head"><span class="level-num">L1</span><span class="level-name">Programming primitives</span><span class="level-meta"><span class="hours">60-80 h</span><span class="status" data-status="L1">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Every program is data plus three forms of control: sequence, choice and repetition. A function is only a named, reusable piece of that control.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Values and types</dt><dd>A value has a type. The type fixes which operations are legal before the program runs.</dd></div>
+                  <div><dt>Names and state</dt><dd>A name refers to a value. Assignment changes the reference, not the value it used to hold.</dd></div>
+                  <div><dt>Choice and repetition</dt><dd>A conditional selects a path. A loop repeats while an invariant still holds.</dd></div>
+                  <div><dt>Functions</dt><dd>A function maps inputs to an output plus possible effects. Make the effects visible in its name.</dd></div>
+                  <div><dt>Collections</dt><dd>Lists, maps and strings are one idea: many values under one name with rules for access.</dd></div>
+                  <div><dt>Reading errors</dt><dd>A traceback is evidence, not noise. Read it from the bottom up, form one hypothesis, then test it.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a worked solution to a small problem, then say what each line changes.</li>
+                  <li><span class="step">Finish one.</span> The same problem with three lines removed. Fill them without running the code first.</li>
+                  <li><span class="step">Do one cold.</span> Solve a new small problem from an empty file. Check only after you commit to an answer.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>A command line tool that reads a file and transforms it, for example a word counter or a plain text task list. No framework, no libraries beyond the standard library.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Name the three forms of control flow.</p><details class="answer"><summary>Reveal the answer</summary><p>Sequence, selection and iteration. Every imperative language offers these three.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does a function hide?</p><details class="answer"><summary>Reveal the answer</summary><p>A body of control and data behind a name and a signature. Callers need the contract, not the body.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why is a traceback read from the bottom?</p><details class="answer"><summary>Reveal the answer</summary><p>The last frame is where the failure surfaced; the frames above are the chain of calls that led there.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What is the difference between a value and a name?</p><details class="answer"><summary>Reveal the answer</summary><p>A value is the data. A name is a binding that currently refers to it and can be rebound.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L1"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://allendowney.github.io/ThinkPython/">Think Python, Allen Downey</a><span class="src-note"> Free, and it teaches the ideas rather than the syntax.</span></li>
+                <li><a href="https://cs50.harvard.edu/python/">CS50’s Introduction to Programming with Python</a><span class="src-note"> Free, with graded problem sets.</span></li>
+                <li><a href="https://automatetheboringstuff.com/">Automate the Boring Stuff with Python, Al Sweigart</a><span class="src-note"> Free online. Practice on real files.</span></li>
+                <li><a href="https://htdp.org/">How to Design Programs, Felleisen et al.</a><span class="src-note"> Read for the design recipe, not the language.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L2">
+          <summary><h3 class="level-head"><span class="level-num">L2</span><span class="level-name">Data, algorithms and cost</span><span class="level-meta"><span class="hours">70-90 h</span><span class="status" data-status="L2">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">The cost of a computation is a property of the data structure, not the language. Choose the structure that makes the operation you need cheap.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Contiguous versus linked</dt><dd>An array gives constant-time indexing and costly inserts. A linked list gives cheap inserts and linear lookup.</dd></div>
+                  <div><dt>Hash tables</dt><dd>A hash function trades a little space and some collisions for near constant time lookup.</dd></div>
+                  <div><dt>Trees</dt><dd>A tree turns a linear search into a logarithmic one by keeping order in the shape.</dd></div>
+                  <div><dt>Recursion and invariants</dt><dd>A recursive function is a proof by induction. State the invariant before you write the case.</dd></div>
+                  <div><dt>Big-O</dt><dd>Count growth in the input size, not seconds. Drop constants, keep the dominant term.</dd></div>
+                  <div><dt>Memory hierarchy</dt><dd>Cache, RAM and disk differ by orders of magnitude. Locality often beats a better algorithm.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Trace binary search on sixteen sorted values, writing the invariant at each step.</li>
+                  <li><span class="step">Finish one.</span> A partly written hash table with <code>get</code> missing. Implement it and explain collisions.</li>
+                  <li><span class="step">Do one cold.</span> Given a workload of one million inserts and one million lookups, pick a structure and defend it with a measurement.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>Implement an array list, a hash map and a binary search tree from scratch. Benchmark insert and lookup at four input sizes and write down where each one wins.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why is array indexing constant time?</p><details class="answer"><summary>Reveal the answer</summary><p>The address is base plus index times element size, computed directly, independent of n.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does a hash table trade for fast lookup?</p><details class="answer"><summary>Reveal the answer</summary><p>Extra space and the cost of handling collisions, plus a hash function that spreads keys evenly.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What must be true before each step of binary search?</p><details class="answer"><summary>Reveal the answer</summary><p>The target, if present, lies inside the remaining sorted interval. Each halving preserves that invariant.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why can a theoretically slower algorithm win on real hardware?</p><details class="answer"><summary>Reveal the answer</summary><p>Constant factors and cache locality dominate at realistic sizes. Big-O describes growth, not wall time.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L2"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://www.manning.com/books/grokking-algorithms">Grokking Algorithms, Aditya Bhargava</a><span class="src-note"> Pictures first, then the maths.</span></li>
+                <li><a href="https://algs4.cs.princeton.edu/home/">Algorithms, Sedgewick and Wayne, course site</a><span class="src-note"> Free code, lectures and exercises.</span></li>
+                <li><a href="https://visualgo.net/">VisuAlgo</a><span class="src-note"> Step through a structure until you can predict the next move.</span></li>
+                <li>Introduction to Algorithms, Cormen, Leiserson, Rivest and Stein<span class="src-note"> Use as a reference, not a cover-to-cover read.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <p class="act-line">Craft <span>L3 to L5</span></p>
+
+        <details class="level" id="L3">
+          <summary><h3 class="level-head"><span class="level-num">L3</span><span class="level-name">Abstraction and design</span><span class="level-meta"><span class="hours">60-80 h</span><span class="status" data-status="L3">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Complexity is controlled by giving each part one job and one stable interface. The interface is the contract; the implementation is a secret.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Information hiding</dt><dd>Decompose around decisions likely to change, so each secret lives in one module. Parnas, 1972.</dd></div>
+                  <div><dt>Deep modules</dt><dd>A small interface over a lot of behavior beats many shallow parts. Prefer fewer, deeper modules.</dd></div>
+                  <div><dt>Cohesion and coupling</dt><dd>Keep things that change together close. Keep things that change independently apart.</dd></div>
+                  <div><dt>Naming</dt><dd>A name is the first and cheapest abstraction. It should say what the thing does, not how.</dd></div>
+                  <div><dt>Pure and effectful</dt><dd>Separate computation from I/O. A pure function can be tested and reasoned about alone.</dd></div>
+                  <div><dt>Errors as contract</dt><dd>What a function rejects and what it raises are part of its interface, not an afterthought.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a 400-line script and mark every place a decision about file format leaks out.</li>
+                  <li><span class="step">Finish one.</span> A refactor with the module boundaries drawn and two bodies left blank. Fill them.</li>
+                  <li><span class="step">Do one cold.</span> Take a fresh messy script and restructure it without hints, then compare the two designs.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>Refactor a deliberately messy program into modules with a documented interface, a test suite and a short README that states each contract. Write one page on what you hid and why.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">What is the criterion for splitting a system into modules?</p><details class="answer"><summary>Reveal the answer</summary><p>Hide design decisions likely to change, so a change touches one module instead of many.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why is a deep module cheaper than a shallow one?</p><details class="answer"><summary>Reveal the answer</summary><p>Callers learn one interface and get a lot of behavior; shallow modules multiply interfaces without removing complexity.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What belongs in an interface contract?</p><details class="answer"><summary>Reveal the answer</summary><p>Inputs, outputs, preconditions, postconditions and the errors it can raise.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why keep I/O at the edge?</p><details class="answer"><summary>Reveal the answer</summary><p>Pure core logic is deterministic, composable and testable; effects are where most surprises live.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L3"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://web.stanford.edu/~ouster/">A Philosophy of Software Design, John Ousterhout</a><span class="src-note"> The clearest short book on complexity.</span></li>
+                <li><a href="https://doi.org/10.1145/361598.361623">On the Criteria To Be Used in Decomposing Systems into Modules, D. L. Parnas (1972)</a><span class="src-note"> The original argument for information hiding.</span></li>
+                <li><a href="https://ocw.mit.edu/courses/6-001-structure-and-interpretation-of-computer-programs-spring-2005/">Structure and Interpretation of Computer Programs, MIT OCW</a><span class="src-note"> Abstraction built from the ground up. Free.</span></li>
+                <li><a href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/">The Pragmatic Programmer, Hunt and Thomas</a><span class="src-note"> Habits of a working developer.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L4">
+          <summary><h3 class="level-head"><span class="level-num">L4</span><span class="level-name">Correctness</span><span class="level-meta"><span class="hours">60-80 h</span><span class="status" data-status="L4">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">You cannot establish correctness by reading code. State the expected behavior first, then build a mechanism that fails when the behavior is wrong.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Tests as specification</dt><dd>A test is a claim about behavior, written so a machine can check it forever.</dd></div>
+                  <div><dt>Unit, integration, property</dt><dd>Unit checks a part. Integration checks a seam. Property checks a law over many inputs.</dd></div>
+                  <div><dt>Invariants</dt><dd>Write down what must always be true, then make the program check it while it runs.</dd></div>
+                  <div><dt>Debugging as experiment</dt><dd>One hypothesis, one change, one observation. Bisect the search space instead of guessing.</dd></div>
+                  <div><dt>Mutation and fuzzing</dt><dd>Break the code on purpose to see whether the tests notice. Generate inputs instead of imagining them.</dd></div>
+                  <div><dt>Types and coverage</dt><dd>A type checker is a cheap proof of some claims. Coverage tells you what ran, not what was checked.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a test suite and, for each test, write the behavioral claim it encodes.</li>
+                  <li><span class="step">Finish one.</span> A suite with two property tests left as TODO. State the invariant and implement them.</li>
+                  <li><span class="step">Do one cold.</span> Given a library with five seeded bugs, find all five using only failing tests and a bisect.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>Add unit and property-based tests to your L3 library. Run mutation testing until at least four of five mutants are killed. Fix every bug the tests find and record which test caught each one.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why is a test a specification, not just a check?</p><details class="answer"><summary>Reveal the answer</summary><p>It states expected behavior in executable form, so later changes are judged against a written claim.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does a property-based test add over an example?</p><details class="answer"><summary>Reveal the answer</summary><p>It checks a law across hundreds of generated inputs, including cases you would not have written by hand.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why is high coverage weak evidence of correctness?</p><details class="answer"><summary>Reveal the answer</summary><p>It counts executed lines, not asserted behavior. A line can run with no meaningful check attached.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What is the loop for debugging?</p><details class="answer"><summary>Reveal the answer</summary><p>State a hypothesis, make one change that distinguishes it, observe the result, then narrow the search.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L4"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://www.fuzzingbook.org/">The Fuzzing Book, Zeller et al.</a><span class="src-note"> Free, executable chapters on generating tests.</span></li>
+                <li><a href="https://hypothesis.readthedocs.io/">Hypothesis documentation</a><span class="src-note"> Property-based testing in Python, with examples.</span></li>
+                <li>Working Effectively with Legacy Code, Michael Feathers<span class="src-note"> How to get untested code under test safely.</span></li>
+                <li><a href="https://testing.googleblog.com/">Google Testing Blog</a><span class="src-note"> Short, evidence-led essays on test practice.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L5">
+          <summary><h3 class="level-head"><span class="level-num">L5</span><span class="level-name">Systems and the machine</span><span class="level-meta"><span class="hours">80-100 h</span><span class="status" data-status="L5">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Program behavior emerges from hardware, the operating system and the runtime. Time, memory and I/O are budgets, not abstractions.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Processes and threads</dt><dd>A process owns an address space. Threads share one, which is where races come from.</dd></div>
+                  <div><dt>Virtual memory</dt><dd>Your pointers are addresses in a map maintained by the kernel, not physical locations.</dd></div>
+                  <div><dt>Stack, heap, cache</dt><dd>Allocation site decides lifetime. Locality decides speed more than instruction count.</dd></div>
+                  <div><dt>System calls</dt><dd>Every file, socket and clock reading crosses into the kernel. That crossing costs.</dd></div>
+                  <div><dt>Networking</dt><dd>TCP gives an ordered byte stream, not messages. HTTP is a convention on top of it.</dd></div>
+                  <div><dt>Profiling</dt><dd>Measure where time goes before changing anything. Guessing at bottlenecks is wasted work.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a <code>strace</code> of a small program and label each syscall with what the code was doing.</li>
+                  <li><span class="step">Finish one.</span> A server that handles one client. Add a thread pool and complete the locking.</li>
+                  <li><span class="step">Do one cold.</span> Build a concurrent echo server, then find the race with a stress test.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>A concurrent TCP server with a documented protocol. Measure throughput and tail latency at 1, 10 and 100 clients, find one race, profile one hot path, and write a one-page report with the numbers you measured.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why do shared-memory threads race?</p><details class="answer"><summary>Reveal the answer</summary><p>Threads share an address space, so interleaved reads and writes to one location depend on scheduling, not on source order.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does virtual memory buy you?</p><details class="answer"><summary>Reveal the answer</summary><p>Isolation between processes, a simple contiguous address space, and the ability to back memory with disk.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why is TCP a byte stream, not a message protocol?</p><details class="answer"><summary>Reveal the answer</summary><p>It preserves order and reliability but not boundaries; the receiver must frame messages itself.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why profile before optimising?</p><details class="answer"><summary>Reveal the answer</summary><p>Time concentrates in a small part of a program, and intuition about where is usually wrong.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L5"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="http://csapp.cs.cmu.edu/">Computer Systems: A Programmer’s Perspective, Bryant and O’Hallaron</a><span class="src-note"> The standard bridge from code to hardware.</span></li>
+                <li><a href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces, Arpaci-Dusseau</a><span class="src-note"> Free textbook: virtualisation, concurrency, persistence.</span></li>
+                <li><a href="https://beej.us/guide/bgnet/">Beej’s Guide to Network Programming</a><span class="src-note"> Free, plain-spoken sockets from scratch.</span></li>
+                <li>The Linux Programming Interface, Michael Kerrisk<span class="src-note"> The reference for syscalls when you need the detail.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <p class="act-line">Systems <span>L6 to L8</span></p>
+
+        <details class="level" id="L6">
+          <summary><h3 class="level-head"><span class="level-num">L6</span><span class="level-name">Data and persistent state</span><span class="level-meta"><span class="hours">60-80 h</span><span class="status" data-status="L6">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Model data around the questions you must answer. A database is a trade between how fast you can ask, how safely you can write, and how much consistency you can afford.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>The relational model</dt><dd>Tables, keys and joins. Normalise to remove contradictory facts, denormalise only with a measured reason.</dd></div>
+                  <div><dt>Indexes</dt><dd>An index is a second, ordered copy of some columns. It speeds reads and slows writes.</dd></div>
+                  <div><dt>Query plans</dt><dd><code>EXPLAIN</code> shows the algorithm the database chose. Read it before adding an index.</dd></div>
+                  <div><dt>Transactions</dt><dd>ACID is a promise about failure and concurrency, not a speed setting.</dd></div>
+                  <div><dt>Isolation</dt><dd>Each level trades anomalies for throughput. Know which anomaly your application can tolerate.</dd></div>
+                  <div><dt>Replication</dt><dd>Copies buy availability and read scale; they also buy stale reads and harder writes.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read an <code>EXPLAIN</code> plan for a slow join and name the operation that dominates.</li>
+                  <li><span class="step">Finish one.</span> A schema with two tables and a missing foreign key. Add the constraint and the migration.</li>
+                  <li><span class="step">Do one cold.</span> Given a slow query and a million rows, get it under a target time with one change.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>Design a schema for a small application, load a million rows, take one query from over a second to under fifty milliseconds using <code>EXPLAIN</code> and an index, then write and rehearse a backup and restore.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why does an index speed reads but slow writes?</p><details class="answer"><summary>Reveal the answer</summary><p>It keeps an extra ordered structure that must be updated on every insert, update and delete.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does ACID promise?</p><details class="answer"><summary>Reveal the answer</summary><p>Atomicity, consistency, isolation and durability: a transaction either fully applies or not at all, and a committed result survives failure.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why is a normalised schema easier to keep correct?</p><details class="answer"><summary>Reveal the answer</summary><p>Each fact lives in one place, so an update cannot leave two copies disagreeing.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why does CAP not simply mean choose two?</p><details class="answer"><summary>Reveal the answer</summary><p>It describes behavior during a network partition; most systems tune per-operation consistency and availability rather than picking once.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L6"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://use-the-index-luke.com/">Use The Index, Luke!</a><span class="src-note"> Free, focused on how indexes actually behave.</span></li>
+                <li><a href="https://15445.courses.cs.cmu.edu/">CMU 15-445/645 Database Systems</a><span class="src-note"> Free lectures and a build-a-database project.</span></li>
+                <li><a href="https://www.postgresql.org/docs/">PostgreSQL documentation</a><span class="src-note"> Read the concurrency and performance chapters first.</span></li>
+                <li><a href="https://dataintensive.net/">Designing Data-Intensive Applications, Martin Kleppmann</a><span class="src-note"> The trade-offs behind storage and replication.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L7">
+          <summary><h3 class="level-head"><span class="level-num">L7</span><span class="level-name">Architecture and design decisions</span><span class="level-meta"><span class="hours">80-100 h</span><span class="status" data-status="L7">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Architecture is the set of decisions that are expensive to reverse. Delay them until you have evidence, then isolate each one behind a boundary.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Requirements first</dt><dd>Write down what must be true. A boundary drawn before that is a guess.</dd></div>
+                  <div><dt>Domain model</dt><dd>Name the concepts the business uses and make the code speak the same language.</dd></div>
+                  <div><dt>Ports and adapters</dt><dd>Put the decision at the edge. The core should not know which database or queue exists.</dd></div>
+                  <div><dt>Synchronous versus events</dt><dd>A call needs an answer now. An event records that something happened. Pick deliberately.</dd></div>
+                  <div><dt>ADRs</dt><dd>One page per decision: context, options, choice, consequences. Written when you decide.</dd></div>
+                  <div><dt>Reversibility</dt><dd>Prefer the option you can undo. The cost of a decision is the cost of changing it later.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a published design doc and list each decision and what would make it wrong.</li>
+                  <li><span class="step">Finish one.</span> A design doc with the options filled in and the choice left blank. Choose and justify.</li>
+                  <li><span class="step">Do one cold.</span> Write an ADR for a real choice in your own project, then try to argue the opposite.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>A design document and a working system of at least three components with clear boundaries, one asynchronous path and three ADRs. Include a C4 container diagram and a table of the trade-offs you rejected.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">What makes a decision architectural?</p><details class="answer"><summary>Reveal the answer</summary><p>It is expensive to reverse and shapes many later decisions; cheap, local choices are not architecture.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why write an ADR at decision time?</p><details class="answer"><summary>Reveal the answer</summary><p>The context and rejected options are still known then, and later readers need the why, not only the what.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does a hexagonal boundary protect?</p><details class="answer"><summary>Reveal the answer</summary><p>Domain logic from the details of delivery and storage, so either can change without rewriting the core.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why prefer a reversible choice?</p><details class="answer"><summary>Reveal the answer</summary><p>It keeps the option to learn, and learning is worth more than being right early under uncertainty.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L7"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://dataintensive.net/">Designing Data-Intensive Applications, Martin Kleppmann</a><span class="src-note"> Trade-offs, not recipes.</span></li>
+                <li><a href="https://c4model.com/">C4 model, Simon Brown</a><span class="src-note"> A small, readable notation for diagrams.</span></li>
+                <li><a href="https://adr.github.io/">Architecture decision records</a><span class="src-note"> A one-page template and examples.</span></li>
+                <li>Fundamentals of Software Architecture, Richards and Ford<span class="src-note"> A vocabulary for trade-offs and characteristics.</span></li>
+                <li>Software Architecture in Practice, Bass, Clements and Kazman<span class="src-note"> The SEI treatment of quality attributes.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L8">
+          <summary><h3 class="level-head"><span class="level-num">L8</span><span class="level-name">Collaboration and change over time</span><span class="level-meta"><span class="hours">50-70 h</span><span class="status" data-status="L8">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Software is written once and changed for years by people who were not there. Optimise for the reader and for the safety of the next change.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Git as history</dt><dd>Commits are arguments about why. Rebase, bisect and blame are tools for reading that history.</dd></div>
+                  <div><dt>Code review</dt><dd>Review for correctness, clarity and missing cases, not for style a formatter could settle.</dd></div>
+                  <div><dt>Continuous integration</dt><dd>A change should be proven on every commit. Short-lived branches keep the proof cheap.</dd></div>
+                  <div><dt>Trunk-based development</dt><dd>Small, frequent merges beat long-lived branches that grow conflicts and hide risk.</dd></div>
+                  <div><dt>DORA findings</dt><dd>Lead time, deployment frequency, change failure rate and time to restore describe a team better than story points.</dd></div>
+                  <div><dt>Documentation</dt><dd>Write what a newcomer cannot infer: decisions, invariants and how to run the thing.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a merged pull request and write down what the review changed and why.</li>
+                  <li><span class="step">Finish one.</span> A branch with a failing CI check. Diagnose it from the log and fix only the cause.</li>
+                  <li><span class="step">Do one cold.</span> Ship a small change to a real open source repository and carry it through review.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>One real merged pull request to an open source project, or a two-person project with review on every commit, CI on every push, a passing pipeline and a short onboarding README.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why are small, frequent merges safer?</p><details class="answer"><summary>Reveal the answer</summary><p>The diff is small, conflicts are rare, feedback is fast and a bad change is easy to identify and revert.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What is git bisect for?</p><details class="answer"><summary>Reveal the answer</summary><p>It binary-searches commit history to find the first commit that introduced a regression.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What do the DORA measures tell you?</p><details class="answer"><summary>Reveal the answer</summary><p>How fast and how safely a team delivers change, measured on outcomes rather than on estimates.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What belongs in a code review?</p><details class="answer"><summary>Reveal the answer</summary><p>Correctness, edge cases, clarity and design. Style belongs in a formatter.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L8"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://git-scm.com/book/en/v2">Pro Git, Chacon and Straume</a><span class="src-note"> Free. Read chapters 3 and 7 carefully.</span></li>
+                <li><a href="https://google.github.io/eng-practices/review/">Google engineering practices, code review</a><span class="src-note"> Free, short, specific.</span></li>
+                <li><a href="https://dora.dev/">Accelerate, Forsgren, Humble and Kim, and DORA research</a><span class="src-note"> The evidence behind the four measures.</span></li>
+                <li><a href="https://trunkbaseddevelopment.com/">Trunk-based development</a><span class="src-note"> Patterns and their costs.</span></li>
+                <li><a href="https://abseil.io/resources/swe-book">Software Engineering at Google, Winters, Manshreck and Wright</a><span class="src-note"> Free. Read the chapters on time and change.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <p class="act-line">Judgment <span>L9 to L10</span></p>
+
+        <details class="level" id="L9">
+          <summary><h3 class="level-head"><span class="level-num">L9</span><span class="level-name">Reliability, security and operations</span><span class="level-meta"><span class="hours">80-100 h</span><span class="status" data-status="L9">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Systems fail, and correctness includes behavior under failure, attack and load. You must be able to see what you shipped before you can claim it works.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Observability</dt><dd>Logs, metrics and traces answer different questions. Instrument before the incident, not during it.</dd></div>
+                  <div><dt>SLOs and error budgets</dt><dd>Set a target, measure against it, and let the budget decide when to stop shipping features.</dd></div>
+                  <div><dt>Failure is normal</dt><dd>Timeouts, retries with jitter, idempotency keys and circuit breakers keep a partial failure local.</dd></div>
+                  <div><dt>Threat modelling</dt><dd>List assets, entry points and trust boundaries before choosing controls.</dd></div>
+                  <div><dt>Common vulnerabilities</dt><dd>Injection, broken access control, leaked secrets and unsafe deserialization. Check the OWASP ten by name.</dd></div>
+                  <div><dt>Incidents</dt><dd>A blameless postmortem turns one failure into a change that prevents the class of failure.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read a public postmortem and map the timeline, the trigger and the missing signal.</li>
+                  <li><span class="step">Finish one.</span> A service with a dashboard but no SLO. Define one, then add the alert that would have caught the incident.</li>
+                  <li><span class="step">Do one cold.</span> Inject a failure into your own service, detect it from your telemetry, and write the postmortem.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>Take a service to a defined production state: dashboards, one SLO with an error budget, a runbook, a load test with a stated limit, a security review against the OWASP ten, a canary release, and a blameless postmortem from an injected failure.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why set an SLO instead of aiming for 100 percent?</p><details class="answer"><summary>Reveal the answer</summary><p>Perfect reliability is unaffordable and slows change; a budget makes the trade explicit and measurable.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why do retries need jitter and idempotency?</p><details class="answer"><summary>Reveal the answer</summary><p>Synchronised retries amplify load, and a duplicate request must not apply a change twice.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What is a trust boundary?</p><details class="answer"><summary>Reveal the answer</summary><p>A point where data crosses between components with different privileges; it is where validation and authorisation belong.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What makes a postmortem useful?</p><details class="answer"><summary>Reveal the answer</summary><p>It identifies the systemic causes and produces concrete preventive work, without assigning blame to a person.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L9"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li><a href="https://sre.google/sre-book/">Site Reliability Engineering, Beyer et al.</a><span class="src-note"> Free. Start with SLOs and incident response.</span></li>
+                <li><a href="https://sre.google/workbook/">The Site Reliability Workbook</a><span class="src-note"> Free, practical companion.</span></li>
+                <li>Release It!, Michael Nygard<span class="src-note"> Stability patterns and the failure modes they address.</span></li>
+                <li><a href="https://owasp.org/www-project-top-ten/">OWASP Top Ten</a><span class="src-note"> The baseline list, with examples and fixes.</span></li>
+                <li><a href="https://www.cl.cam.ac.uk/~rja14/book.html">Security Engineering, Ross Anderson</a><span class="src-note"> Free third edition. Read for the mental model.</span></li>
+                <li><a href="https://doi.org/10.1145/2408776.2408794">The Tail at Scale, Dean and Barroso (2013)</a><span class="src-note"> Why the slowest request defines the user’s wait.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class="level" id="L10">
+          <summary><h3 class="level-head"><span class="level-num">L10</span><span class="level-name">Judgment and synthesis</span><span class="level-meta"><span class="hours">200 h and open</span><span class="status" data-status="L10">Not started</span><span class="toggle" aria-hidden="true"></span></span></h3></summary>
+          <div class="level-body">
+            <p class="thesis">Mastery is not knowing more. It is repeatedly making defensible decisions under uncertainty, and making other people’s decisions better too.</p>
+            <div class="level-cols">
+              <div>
+                <h4>What you must know</h4>
+                <dl class="concepts">
+                  <div><dt>Problem framing</dt><dd>Half of engineering is deciding what the problem is. Write the question before the answer.</dd></div>
+                  <div><dt>Choosing what not to build</dt><dd>The cheapest, safest and most maintainable code is the code you did not write.</dd></div>
+                  <div><dt>Primary sources</dt><dd>Papers, RFCs and postmortems beat summaries. Learn to find the claim and the evidence.</dd></div>
+                  <div><dt>Cost and capacity models</dt><dd>Back-of-envelope arithmetic should decide architecture before a benchmark exists.</dd></div>
+                  <div><dt>Teaching</dt><dd>Explain a topic without notes. The gaps in your explanation are the gaps in your model.</dd></div>
+                  <div><dt>Calibrated uncertainty</dt><dd>Say what you know, what you assume and how you would find out. Being wrong clearly is a skill.</dd></div>
+                </dl>
+              </div>
+              <div>
+                <h4>Practice ladder</h4>
+                <ol class="ladder-steps">
+                  <li><span class="step">Study one.</span> Read one systems paper and reconstruct its argument, assumptions and measurement in one page.</li>
+                  <li><span class="step">Finish one.</span> A design review with a proposal and missing trade-offs. Supply the objections yourself.</li>
+                  <li><span class="step">Do one cold.</span> Defend a technical decision to a skeptical reviewer using only evidence you can point to.</li>
+                </ol>
+                <p class="capstone"><span class="capstone-label">Build this</span>One substantial original system you designed, built, operated, measured and documented over months, plus a written retrospective of the decisions you would change, and one topic you taught to someone else from memory.</p>
+              </div>
+            </div>
+            <div class="gate">
+              <h4>Gate, four questions</h4>
+              <p class="hint">Answer from memory before opening any answer. Set a prediction first, then grade each question honestly.</p>
+              <div class="predict-row"><label class="predict"><span>Predict your score, in percent</span><input type="number" min="0" max="100" step="5" inputmode="numeric" data-predict aria-label="Predict your gate score in percent"></label></div>
+              <ol class="prompts">
+                <li><p class="q">Why is problem framing an engineering task?</p><details class="answer"><summary>Reveal the answer</summary><p>The solution is judged against the stated problem; a precise, falsifiable problem statement prevents excellent work on the wrong thing.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">Why read the paper rather than the summary?</p><details class="answer"><summary>Reveal the answer</summary><p>The assumptions, limitations and measurement conditions live in the original and decide whether the result applies to you.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does teaching reveal?</p><details class="answer"><summary>Reveal the answer</summary><p>It forces retrieval and exposes missing links in your model that recognition hides.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+                <li><p class="q">What does calibrated uncertainty sound like?</p><details class="answer"><summary>Reveal the answer</summary><p>A claim, the confidence behind it, the assumption it rests on, and the experiment that would change your mind.</p></details><div class="grade"><button type="button" class="chip" data-act="grade" data-grade="hit">Got it</button><button type="button" class="chip" data-act="grade" data-grade="part">Partly</button><button type="button" class="chip" data-act="grade" data-grade="miss">Missed</button></div></li>
+              </ol>
+              <p class="gate-result" data-result="L10"></p>
+            </div>
+            <div>
+              <h4>Go deeper</h4>
+              <ul class="level-sources">
+                <li>The Mythical Man-Month, Frederick Brooks<span class="src-note"> Read No Silver Bullet and the essay on conceptual integrity.</span></li>
+                <li>How to Solve It, G. Polya<span class="src-note"> A short method for attacking a problem you do not recognise.</span></li>
+                <li>The Art of Doing Science and Engineering, Richard Hamming<span class="src-note"> On choosing problems worth doing.</span></li>
+                <li>Thinking in Systems, Donella Meadows<span class="src-note"> Stocks, flows and feedback, for a system you cannot see whole.</span></li>
+                <li><a href="https://pdos.csail.mit.edu/6.824/">MIT 6.5840 Distributed Systems</a><span class="src-note"> Free labs built from the original papers.</span></li>
+                <li><a href="https://raft.github.io/">Raft consensus</a><span class="src-note"> A paper, a visualisation and a spec you can implement.</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="opens" id="sources" aria-labelledby="sources-h">
+      <h2 id="sources-h">Where the claims come from</h2>
+      <p class="section-lead">The learning methods cite the research. The engineering levels cite the books, papers and courses they lean on. Per-level sources sit under each level above.</p>
+      <div class="source-groups">
+        <div>
+          <h3>Learning science</h3>
+          <ol class="refs">
+            <li id="r1"><span class="ref-n">01</span><div><p class="ref-cite">Dunlosky, Rawson, Marsh, Nathan and Willingham (2013). Improving students’ learning with effective learning techniques. Psychological Science in the Public Interest, 14(1), 4-58.</p><a class="ref-link" href="https://doi.org/10.1177/1529100612453266">doi:10.1177/1529100612453266</a></div></li>
+            <li id="r2"><span class="ref-n">02</span><div><p class="ref-cite">Roediger and Karpicke (2006). Test-enhanced learning: taking memory tests improves long-term retention. Psychological Science, 17(3), 249-255.</p><a class="ref-link" href="https://doi.org/10.1111/j.1467-9280.2006.01693.x">doi:10.1111/j.1467-9280.2006.01693.x</a></div></li>
+            <li id="r3"><span class="ref-n">03</span><div><p class="ref-cite">Cepeda, Pashler, Vul, Wixted and Rohrer (2006). Distributed practice in verbal recall tasks: a review and quantitative synthesis. Psychological Bulletin, 132(3), 354-380.</p><a class="ref-link" href="https://doi.org/10.1037/0033-2909.132.3.354">doi:10.1037/0033-2909.132.3.354</a></div></li>
+            <li id="r4"><span class="ref-n">04</span><div><p class="ref-cite">Cepeda, Vul, Rohrer, Wixted and Pashler (2008). Spacing effects in learning: a temporal ridgeline of optimal retention. Psychological Science, 19(11), 1095-1102.</p><a class="ref-link" href="https://doi.org/10.1111/j.1467-9280.2008.02209.x">doi:10.1111/j.1467-9280.2008.02209.x</a></div></li>
+            <li id="r5"><span class="ref-n">05</span><div><p class="ref-cite">Bloom, B. S. (1968). Learning for mastery. Evaluation Comment, 1(2). The criterion-referenced argument behind mastery gates.</p></div></li>
+            <li id="r6"><span class="ref-n">06</span><div><p class="ref-cite">Bloom, B. S. (1984). The 2 sigma problem: the search for methods of group instruction as effective as one-to-one tutoring. Educational Researcher, 13(6), 4-16.</p><a class="ref-link" href="https://doi.org/10.3102/0013189X013006004">doi:10.3102/0013189X013006004</a></div></li>
+            <li id="r7"><span class="ref-n">07</span><div><p class="ref-cite">Sweller, J. (1988). Cognitive load during problem solving: effects on learning. Cognitive Science, 12(2), 257-285.</p><a class="ref-link" href="https://doi.org/10.1207/s15516709cog1202_4">doi:10.1207/s15516709cog1202_4</a></div></li>
+            <li id="r8"><span class="ref-n">08</span><div><p class="ref-cite">Sweller, van Merrienboer and Paas (1998). Cognitive architecture and instructional design. Educational Psychology Review, 10(3), 251-296.</p><a class="ref-link" href="https://doi.org/10.1023/A:1022193728205">doi:10.1023/A:1022193728205</a></div></li>
+            <li id="r9"><span class="ref-n">09</span><div><p class="ref-cite">Atkinson, Derry, Renkl and Wortham (2000). Learning from examples: instructional principles from the worked examples research. Review of Educational Research, 70(2), 181-214.</p><a class="ref-link" href="https://doi.org/10.3102/00346543070002181">doi:10.3102/00346543070002181</a></div></li>
+            <li id="r10"><span class="ref-n">10</span><div><p class="ref-cite">Ericsson, Krampe and Tesch-Romer (1993). The role of deliberate practice in the acquisition of expert performance. Psychological Review, 100(3), 363-406.</p><a class="ref-link" href="https://doi.org/10.1037/0033-295X.100.3.363">doi:10.1037/0033-295X.100.3.363</a></div></li>
+            <li id="r11"><span class="ref-n">11</span><div><p class="ref-cite">Chi, de Leeuw, Chiu and LaVancher (1994). Eliciting self-explanations improves understanding. Cognitive Science, 18(3), 439-477.</p><a class="ref-link" href="https://doi.org/10.1016/0364-0213(94)90016-7">doi:10.1016/0364-0213(94)90016-7</a></div></li>
+            <li id="r12"><span class="ref-n">12</span><div><p class="ref-cite">Bjork, R. A. (1994). Memory and metamemory considerations in the training of human beings. In Metacognition: Knowing about Knowing, MIT Press. Desirable difficulties and calibration.</p><a class="ref-link" href="https://bjorklab.psych.ucla.edu/">Bjork Learning and Forgetting Lab</a></div></li>
+            <li id="r13"><span class="ref-n">13</span><div><p class="ref-cite">Brown, Roediger and McDaniel (2014). Make It Stick: The Science of Successful Learning. Harvard University Press. A readable synthesis, not a primary source.</p></div></li>
+            <li id="r14"><span class="ref-n">14</span><div><p class="ref-cite">Bransford, Brown and Cocking, editors (2000). How People Learn: Brain, Mind, Experience, and School. National Academies Press.</p><a class="ref-link" href="https://www.nationalacademies.org/read/9853/chapter/1">Read free at nap.edu</a></div></li>
+          </ol>
+        </div>
+        <div>
+          <h3>Engineering evidence</h3>
+          <ol class="refs">
+            <li id="r15"><span class="ref-n">15</span><div><p class="ref-cite">Parnas, D. L. (1972). On the criteria to be used in decomposing systems into modules. Communications of the ACM, 15(12), 1053-1058.</p><a class="ref-link" href="https://doi.org/10.1145/361598.361623">doi:10.1145/361598.361623</a></div></li>
+            <li id="r16"><span class="ref-n">16</span><div><p class="ref-cite">Brooks, F. P. (1975). The Mythical Man-Month. Addison-Wesley. Include the 1986 essay No Silver Bullet in the 20th anniversary edition.</p></div></li>
+            <li id="r17"><span class="ref-n">17</span><div><p class="ref-cite">Ousterhout, J. (2018). A Philosophy of Software Design. Yaknyam Press. The source of deep modules.</p><a class="ref-link" href="https://web.stanford.edu/~ouster/">Author’s page</a></div></li>
+            <li id="r18"><span class="ref-n">18</span><div><p class="ref-cite">Kleppmann, M. (2017). Designing Data-Intensive Applications. O’Reilly. The trade-off framing used from L6 onward.</p><a class="ref-link" href="https://dataintensive.net/">Book site</a></div></li>
+            <li id="r19"><span class="ref-n">19</span><div><p class="ref-cite">Lamport, L. (1978). Time, clocks, and the ordering of events in a distributed system. Communications of the ACM, 21(7), 558-565.</p><a class="ref-link" href="https://doi.org/10.1145/359545.359563">doi:10.1145/359545.359563</a></div></li>
+            <li id="r20"><span class="ref-n">20</span><div><p class="ref-cite">Saltzer, Reed and Clark (1984). End-to-end arguments in system design. ACM Transactions on Computer Systems, 2(4), 277-288.</p><a class="ref-link" href="https://doi.org/10.1145/357401.357402">doi:10.1145/357401.357402</a></div></li>
+            <li id="r21"><span class="ref-n">21</span><div><p class="ref-cite">Dean and Barroso (2013). The tail at scale. Communications of the ACM, 56(2), 74-80.</p><a class="ref-link" href="https://doi.org/10.1145/2408776.2408794">doi:10.1145/2408776.2408794</a></div></li>
+            <li id="r22"><span class="ref-n">22</span><div><p class="ref-cite">Beyer, Jones, Petoff and Murphy, editors (2016). Site Reliability Engineering. O’Reilly. SLOs, error budgets and postmortems.</p><a class="ref-link" href="https://sre.google/sre-book/">Read free</a></div></li>
+            <li id="r23"><span class="ref-n">23</span><div><p class="ref-cite">Forsgren, Humble and Kim (2018). Accelerate: The Science of Lean Software and DevOps. IT Revolution. The four DORA measures and their evidence.</p><a class="ref-link" href="https://dora.dev/research/">DORA research</a></div></li>
+            <li id="r24"><span class="ref-n">24</span><div><p class="ref-cite">Winters, Manshreck and Wright (2020). Software Engineering at Google. O’Reilly. Time, change and code review at scale.</p><a class="ref-link" href="https://abseil.io/resources/swe-book">Read free</a></div></li>
+            <li id="r25"><span class="ref-n">25</span><div><p class="ref-cite">Moseley and Marks (2006). Out of the Tar Pit. In Frontiers of Software Engineering. The argument that complexity, not process, is the central problem.</p></div></li>
+          </ol>
+          <h3>Free course maps</h3>
+          <ul class="course-list">
+            <li><a href="https://teachyourselfcs.com/">Teach Yourself Computer Science</a> A first-principles reading order for self-study.</li>
+            <li><a href="https://missing.csail.mit.edu/">MIT The Missing Semester of Your CS Education</a> The tooling most courses skip.</li>
+            <li><a href="https://cs50.harvard.edu/x/">Harvard CS50x</a> A free introduction with graded problem sets.</li>
+            <li><a href="https://ocw.mit.edu/">MIT OpenCourseWare</a> Full courses, including SICP and 6.5840.</li>
+            <li><a href="https://github.com/ossu/computer-science">OSSU Computer Science</a> A community-maintained full curriculum from free courses.</li>
+          </ul>
+          <p class="honest">Links go to the publisher, the DOI or the course’s own site. Books without a free edition are cited in full so you can find them in a library. Nothing here is an affiliate link.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="mast">From zero to engineer</p>
+      <p>One static file. Serve it from any host that serves HTML, or open it locally.</p>
+      <p>Progress, gate scores and review dates live in this browser’s localStorage. No account, no network requests, no tracking.</p>
+      <p>Curriculum and references assembled November 2026.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'se-ladder-v1';
+  var DAY = 86400000;
+  var STEPS = [1, 3, 7, 14, 30, 60, 120];
+  var PASS = 80;
+  var levels = Array.prototype.slice.call(document.querySelectorAll('.level'));
+  var state = load();
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var s = JSON.parse(raw);
+        if (s && typeof s === 'object' && s.levels && s.reviews) return s;
+      }
+    } catch (e) {}
+    return { levels: {}, reviews: {} };
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function levelState(id) {
+    if (!state.levels[id]) state.levels[id] = { grades: {}, score: null, passed: false, predicted: null };
+    return state.levels[id];
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var CARDS = [];
+  var CARD_BY_ID = {};
+  levels.forEach(function (el) {
+    Array.prototype.slice.call(el.querySelectorAll('.prompts > li')).forEach(function (li, i) {
+      var card = {
+        id: el.id + ':' + i,
+        level: el.id,
+        q: li.querySelector('.q').textContent.trim(),
+        a: li.querySelector('.answer p').textContent.trim()
+      };
+      CARDS.push(card);
+      CARD_BY_ID[card.id] = card;
+    });
+  });
+
+  function passedCount() {
+    return levels.filter(function (el) { return levelState(el.id).passed; }).length;
+  }
+  function firstOpen() {
+    for (var i = 0; i < levels.length; i++) {
+      if (!levelState(levels[i].id).passed) return levels[i].id;
+    }
+    return null;
+  }
+  function seedReviews(id) {
+    CARDS.forEach(function (c) {
+      if (c.level === id && !state.reviews[c.id]) {
+        state.reviews[c.id] = { idx: -1, due: Date.now() };
+      }
+    });
+  }
+  function evaluate(el) {
+    var st = levelState(el.id);
+    var lis = Array.prototype.slice.call(el.querySelectorAll('.prompts > li'));
+    if (Object.keys(st.grades).length < lis.length) {
+      st.score = null;
+      st.passed = false;
+      return;
+    }
+    var pts = 0;
+    lis.forEach(function (_, i) {
+      pts += st.grades[i] === 'hit' ? 1 : (st.grades[i] === 'part' ? 0.5 : 0);
+    });
+    st.score = (pts / lis.length) * 100;
+    st.passed = st.score >= PASS;
+    if (st.passed) seedReviews(el.id);
+  }
+
+  function renderChrome() {
+    var n = passedCount();
+    document.getElementById('progress-num').textContent = String(n);
+    document.getElementById('progress-fill').style.transform = 'scaleX(' + (n / levels.length) + ')';
+    var current = firstOpen();
+    levels.forEach(function (el) {
+      var st = levelState(el.id);
+      var pill = el.querySelector('[data-status]');
+      pill.textContent = st.passed ? 'Passed' : (st.score !== null ? 'Gate at ' + Math.round(st.score) + '%' : 'Not started');
+      var link = document.querySelector('.rail-ladder a[data-target="' + el.id + '"]');
+      if (link) link.dataset.state = st.passed ? 'passed' : (el.id === current ? 'current' : 'open');
+    });
+  }
+
+  function renderGate(el) {
+    var id = el.id;
+    var st = levelState(id);
+    var lis = Array.prototype.slice.call(el.querySelectorAll('.prompts > li'));
+    lis.forEach(function (li, i) {
+      Array.prototype.slice.call(li.querySelectorAll('[data-act="grade"]')).forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.grade === st.grades[i]));
+      });
+    });
+    var pred = el.querySelector('[data-predict]');
+    if (st.predicted !== null && st.predicted !== undefined) pred.value = String(st.predicted);
+    var result = el.querySelector('[data-result]');
+    var graded = Object.keys(st.grades).length;
+    if (st.score !== null) {
+      var delta = st.score - (st.predicted === null || st.predicted === undefined ? st.score : st.predicted);
+      var calib = (st.predicted === null || st.predicted === undefined)
+        ? 'Set a prediction next time to see your calibration.'
+        : (Math.abs(delta) <= 10 ? 'You called it closely.'
+          : (delta < 0 ? 'You overestimated by ' + Math.round(-delta) + ' points.'
+            : 'You underestimated by ' + Math.round(delta) + ' points.'));
+      result.innerHTML = '<strong>' + (st.passed ? 'Gate passed' : 'Not yet') + ', ' + Math.round(st.score) + ' percent.</strong> ' + esc(calib)
+        + ' <button type="button" class="linkbtn" data-act="retake" data-level="' + id + '">Clear and retake</button>';
+    } else {
+      result.textContent = graded ? (graded + ' of ' + lis.length + ' questions graded.') : 'Grade all four questions to see the result.';
+    }
+  }
+
+  function dueCards() {
+    var now = Date.now();
+    return Object.keys(state.reviews).filter(function (k) {
+      return CARD_BY_ID[k] && state.reviews[k].due <= now;
+    });
+  }
+  function renderReviews() {
+    var box = document.getElementById('review-list');
+    var due = dueCards();
+    document.getElementById('due-count').textContent = String(due.length);
+    if (!due.length) {
+      box.innerHTML = '<p class="empty">Nothing due. Pass a gate and its four questions come back tomorrow, then at 3, 7, 14, 30, 60 and 120 days.</p>';
+      return;
+    }
+    box.innerHTML = due.slice(0, 6).map(function (k) {
+      var c = CARD_BY_ID[k];
+      var r = state.reviews[k];
+      var next = r.idx < 0 ? 'first review' : 'step ' + (r.idx + 1);
+      return '<article class="review-card" data-card="' + esc(k) + '">'
+        + '<p class="card-meta"><span>' + esc(c.level) + '</span><span>' + esc(next) + '</span></p>'
+        + '<p class="card-q">' + esc(c.q) + '</p>'
+        + '<details class="answer"><summary>Reveal the answer</summary><p>' + esc(c.a) + '</p></details>'
+        + '<div class="grade">'
+        + '<button type="button" class="chip" data-act="review" data-grade="again" data-card="' + esc(k) + '">Again</button>'
+        + '<button type="button" class="chip" data-act="review" data-grade="good" data-card="' + esc(k) + '">Good</button>'
+        + '<button type="button" class="chip" data-act="review" data-grade="easy" data-card="' + esc(k) + '">Easy</button>'
+        + '</div></article>';
+    }).join('');
+  }
+
+  function renderAll() {
+    levels.forEach(function (el) { renderGate(el); });
+    renderChrome();
+    renderReviews();
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-act]');
+    if (!t) return;
+    var act = t.dataset.act;
+    if (act === 'grade') {
+      var li = t.closest('li');
+      var el = t.closest('.level');
+      var lis = Array.prototype.slice.call(el.querySelectorAll('.prompts > li'));
+      var wasPassed = levelState(el.id).passed;
+      levelState(el.id).grades[lis.indexOf(li)] = t.dataset.grade;
+      evaluate(el);
+      save();
+      renderGate(el);
+      renderChrome();
+      if (!wasPassed && levelState(el.id).passed) renderReviews();
+    } else if (act === 'retake') {
+      var st = levelState(t.dataset.level);
+      st.grades = {};
+      st.score = null;
+      st.passed = false;
+      save();
+      renderGate(document.getElementById(t.dataset.level));
+      renderChrome();
+    } else if (act === 'review') {
+      var r = state.reviews[t.dataset.card];
+      if (!r) return;
+      if (t.dataset.grade === 'again') {
+        r.idx = -1;
+        r.due = Date.now() + 15 * 60000;
+      } else {
+        r.idx = Math.min(r.idx + (t.dataset.grade === 'easy' ? 2 : 1), STEPS.length - 1);
+        r.due = Date.now() + STEPS[r.idx] * DAY;
+      }
+      save();
+      renderReviews();
+    } else if (act === 'reset') {
+      if (!window.confirm('Clear all progress, gate scores and review dates on this device?')) return;
+      state = { levels: {}, reviews: {} };
+      save();
+      renderAll();
+    }
+  });
+
+  document.addEventListener('change', function (e) {
+    if (!e.target.matches('[data-predict]')) return;
+    var el = e.target.closest('.level');
+    var v = Number(e.target.value);
+    if (!Number.isFinite(v) || v < 0 || v > 100) {
+      e.target.setAttribute('aria-invalid', 'true');
+      return;
+    }
+    e.target.removeAttribute('aria-invalid');
+    levelState(el.id).predicted = Math.round(v);
+    save();
+    renderGate(el);
+  });
+
+  Array.prototype.slice.call(document.querySelectorAll('.rail-ladder a')).forEach(function (a) {
+    a.addEventListener('click', function () {
+      var el = document.getElementById(a.dataset.target);
+      if (el) el.open = true;
+    });
+  });
+  var start = document.querySelector('[data-start]');
+  if (start) start.addEventListener('click', function () {
+    var el = document.getElementById('L0');
+    if (el) el.open = true;
+  });
+  Array.prototype.slice.call(document.querySelectorAll('a[href^="http"]')).forEach(function (a) {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
